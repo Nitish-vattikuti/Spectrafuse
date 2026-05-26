@@ -94,6 +94,3 @@ SpectraFuse includes a `netlify.toml` file, making it instantly ready to deploy 
 
 ---
 
-## 🛡️ License
-
-Built for **DRDO CABS**.
