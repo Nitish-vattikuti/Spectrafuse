@@ -67,7 +67,7 @@ export function Navbar() {
             {/* Right side */}
             <div className="hidden md:flex items-center gap-3">
               <a
-                href="https://github.com"
+                href="https://github.com/Nitish-vattikuti/Spectrafuse"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg text-dark-muted hover:text-dark-text hover:bg-dark-card/50 transition-colors"

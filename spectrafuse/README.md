@@ -1,73 +1,99 @@
-# React + TypeScript + Vite
+# 🛰️ SpectraFuse
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Multi-Spectral Image Fusion for Airborne Surveillance**
+> 
+> *A client-side browser application engineered for the Centre for Airborne Systems (DRDO CABS) to fuse, analyze, and process IR, visible, and NIR imagery from Electro-Optical (EO) payloads.*
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ⚡ Features
 
-## React Compiler
+### 1. Multi-Band Fusion Algorithms
+Easily merge Visible, Near-Infrared (NIR), and Thermal Infrared (TIR) images using 5 sophisticated mathematical fusion techniques:
+*   **Discrete Wavelet Transform (DWT):** Multi-resolution Haar wavelet decomposition with configurable high/low-frequency fusion rules. Best for edge and detail preservation.
+*   **Principal Component Analysis (PCA):** Projects bands onto principal components, replacing the first component with thermal data. Best for statistical independence and variance.
+*   **Brovey Transform:** A powerful Pan-sharpening method that injects thermal data while perfectly preserving spectral and color ratios.
+*   **Intensity-Hue-Saturation (IHS):** Replaces the intensity channel with thermal data, preserving exact color hues for highly natural-looking fusions.
+*   **Weighted Mean:** A fast, adjustable pixel-averaging algorithm for establishing baselines.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. Deep Learning Object Detection (Aerial Focus)
+Leverages TensorFlow.js (COCO-SSD) executing entirely in the browser to detect key tactical and transport assets (vehicles, airplanes, boats) with customizable confidence thresholds to prevent false positives in high-altitude imagery.
 
-## Expanding the ESLint configuration
+### 3. Thermal Anomaly Detection
+Uses advanced statistical sigma-thresholding and a 3x3 box-blur noise reduction algorithm on the thermal bands to accurately locate heat signatures, hot spots, and tactical anomalies.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 4. Advanced Analytics & Quality Metrics
+Real-time mathematical breakdown of your fusion quality:
+*   **PSNR (Peak Signal-to-Noise Ratio)**
+*   **SSIM (Structural Similarity Index)**
+*   **Shannon Entropy**
+*   *Includes automated letter grading (A+ to F) based on combined metric performance.*
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 5. False-Color Mapping
+Apply Jet, Inferno, or Viridis colormaps dynamically to thermal data for rapid, intuitive heat visualization before or after fusion.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🛠️ Technical Architecture
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+*   **Frontend Framework:** React 18 with Vite
+*   **Language:** TypeScript
+*   **Styling:** Tailwind CSS (Tactical Deep Orange & Pure Black UI)
+*   **Machine Learning:** TensorFlow.js (`@tensorflow/tfjs`, `@tensorflow-models/coco-ssd`)
+*   **State Management:** Zustand
+*   **Export/Reporting:** `jspdf`, `file-saver`
+*   **Data Visualization:** Recharts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+*Because this application runs entirely client-side, your classified/sensitive images are never uploaded to an external server.*
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## 🚀 Quick Start (Local Development)
+
+To run SpectraFuse locally on your machine:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Nitish-vattikuti/Spectrafuse.git
+   cd Spectrafuse
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in browser:**
+   Navigate to `http://localhost:5173`
+
+---
+
+## 🌍 Deployment
+
+SpectraFuse includes a `netlify.toml` file, making it instantly ready to deploy on **Netlify** or **Render**.
+
+### Deploying to Netlify (Recommended)
+1. Push your code to GitHub.
+2. Log into [Netlify](https://www.netlify.com/).
+3. Click **Add new site** > **Import an existing project**.
+4. Select this GitHub repository.
+5. Netlify will automatically detect the settings from `netlify.toml` (`npm run build` and `dist` folder).
+6. Click **Deploy site**.
+
+### Deploying to Render
+1. Log into [Render](https://render.com/).
+2. Create a new **Static Site**.
+3. Connect this GitHub repository.
+4. Set the **Build Command** to `npm run build` and **Publish Directory** to `dist`.
+5. *Important:* Add a Redirect/Rewrite rule under the site settings to redirect `/*` to `/index.html` (Status 200) to support React Router.
+
+---
+
+## 🛡️ License
+
+Built for **DRDO CABS**.
