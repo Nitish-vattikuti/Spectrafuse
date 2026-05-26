@@ -2,7 +2,7 @@
 
 > **Multi-Spectral Image Fusion for Airborne Surveillance**
 > 
-> *A client-side browser application engineered for the Centre for Airborne Systems (DRDO CABS) to fuse, analyze, and process IR, visible, and NIR imagery from Electro-Optical (EO) payloads.*
+> *A client-side browser application engineered for the Centre for Airborne Systems to fuse, analyze, and process IR, visible, and NIR imagery from Electro-Optical (EO) payloads.*
 
 ---
 
@@ -92,8 +92,3 @@ SpectraFuse includes a `netlify.toml` file, making it instantly ready to deploy 
 4. Set the **Build Command** to `npm run build` and **Publish Directory** to `dist`.
 5. *Important:* Add a Redirect/Rewrite rule under the site settings to redirect `/*` to `/index.html` (Status 200) to support React Router.
 
----
-
-## 🛡️ License
-
-Built for **DRDO CABS**.
